@@ -18,12 +18,15 @@ namespace cedro_restaurant_back_end.Controllers
         public TodoController(AppDbContext context)
         {
             _context = context;
-
+            
             if (_context.Restaurants.Count() == 0)
             {
                 _context.Restaurants.Add(new Restaurant { Name = "Restaurant 1" });
+                _context.Restaurants.Add(new Restaurant { Name = "Restaurant 2" });
+                _context.Restaurants.Add(new Restaurant { Name = "Restaurant 4" });
+                _context.Restaurants.Add(new Restaurant { Name = "Restaurant 3" });
                 _context.SaveChanges();
-            }
+            }            
         }
 
         [HttpGet(Name = "Restaurant.GetAll")]
@@ -54,7 +57,7 @@ namespace cedro_restaurant_back_end.Controllers
             await _context.Restaurants.AddAsync(newItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetRestaurant", new { id = newItem.RestaurantId }, newItem);
+            return CreatedAtRoute("Restaurant.Get", new { id = newItem.Id }, newItem);
         }
 
         [HttpPut("{id}", Name = "Restaurant.Update")]
