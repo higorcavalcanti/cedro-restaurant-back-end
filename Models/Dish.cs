@@ -6,7 +6,7 @@ namespace cedro_restaurant_back_end.Models
     [Table("Dishes")]
     public class Dish
     {
-        public long DishId { get; set; }
+        public long Id { get; set; }
         
         [Required]
         [StringLength(100)]
@@ -17,7 +17,7 @@ namespace cedro_restaurant_back_end.Models
         public double Price { get; set; }
         
         [Required]
-        public int RestaurantId { get; set; }
-        public Restaurant Restaurant { get; set; }
+        public long RestaurantId { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }
