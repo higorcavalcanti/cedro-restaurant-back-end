@@ -39,7 +39,9 @@ namespace cedro_restaurant_back_end.Controllers
         {
             try
             {
-                return await _context.Dishes.ToListAsync();
+                return await _context.Dishes
+                    .Include(d => d.Restaurant)                    
+                    .ToListAsync();
             }
             catch(Exception e)
             {

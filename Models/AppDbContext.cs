@@ -14,13 +14,8 @@ namespace cedro_restaurant_back_end.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Restaurant>()
-                .HasMany(r => r.Dishes)
-                .WithOne(d => d.Restaurant);
-
             modelBuilder.Entity<Dish>()
-                .HasOne(d => d.Restaurant)
-                .WithMany(r => r.Dishes);
+                .HasOne(d => d.Restaurant);
         }
     }
 }

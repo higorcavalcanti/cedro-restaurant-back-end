@@ -12,7 +12,5 @@ namespace cedro_restaurant_back_end.Models
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
-        
-        public virtual ICollection<Dish> Dishes { get; set; }
     }
 }

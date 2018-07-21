@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using cedro_restaurant_back_end.Models;
+using Newtonsoft.Json;
 
 namespace cedro_restaurant_back_end
 {
@@ -24,7 +25,9 @@ namespace cedro_restaurant_back_end
             var connection = @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Cedro;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connection));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddCors(options => options.AddPolicy("AllowAll", p => 
                 p.AllowAnyOrigin()
                 .AllowAnyMethod()
