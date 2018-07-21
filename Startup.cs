@@ -27,7 +27,9 @@ namespace cedro_restaurant_back_end
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("Restaurants"));
+            var connection = @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=Cedro;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connection));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options => options.AddPolicy("AllowAll", p => 
                 p.AllowAnyOrigin()
